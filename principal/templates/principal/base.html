@@ -25,19 +25,29 @@
                   <th>Preço Unitário</th>
                 </tr>
 
-                {% for produto in lista_compras %}
+                {% for categoria in categorias_compras %}
                     <tr>
-                      <td>{{produto.nome}}</td>
-                      <td>{{produto.quantidade}}</td>
-                      <td>R$ {{produto.preco|floatformat:2}}</td>
-                      {% if produto.preco == 0 %}
-                        <td><a href="{% url 'principal:adicionar-ao-carrinho' produto.id %}" class="btn btn-primary">>></a></td>
-                      {% else %}
-                        <td><a href="{% url 'principal:adicionar-ao-carrinho' produto.id %}" class="btn btn-warning">>></a></td>
-                      {% endif %}
-
+                      <th>{{categoria.nome}}</th>
+                      <th></th>
+                      <th></th>
                     </tr>
+
+                    {% for produto in categoria.produto_set.all %}
+                      <tr>
+                        <td>{{produto.nome}}</td>
+                        <td>{{produto.quantidade}}</td>
+                        <td>R$ {{produto.preco|floatformat:2}}</td>
+                        {% if produto.preco == 0 %}
+                          <td><a href="{% url 'principal:adicionar-ao-carrinho' produto.id %}" class="btn btn-primary">>></a></td>
+                        {% else %}
+                          <td><a href="{% url 'principal:adicionar-ao-carrinho' produto.id %}" class="btn btn-warning">>></a></td>
+                        {% endif %}
+                      </tr>
+
+                    {% endfor %}
+
                 {% endfor %}
+
               </table>
             </div>
           </div>

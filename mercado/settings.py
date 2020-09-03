@@ -25,7 +25,7 @@ SECRET_KEY = '9&t)sl#neqp1qk@c1k1-yq6mhl+z67!u-b84ekl8^=w3=_dy96'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mercado.mazzollisistemas.com.br',]
+ALLOWED_HOSTS = ['mercado.mazzollisistemas.com.br','localhost']
 
 
 # Application definition

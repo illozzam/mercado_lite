@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .models import Produto
+from .models import Categoria, Produto
 from .forms import AdicionarProdutoForm
 
 class InicialView(View):
@@ -14,7 +14,7 @@ class InicialView(View):
         for produto in Produto.objects.all():
             self.dados['valor_total'] += produto.quantidade * produto.preco
 
-        self.dados['lista_compras'] = Produto.objects.all().order_by('preco', 'nome')
+        self.dados['categorias_compras'] = Categoria.objects.all()
         return render(request, self.template, self.dados)
 
 class AdicionarProdutoView(View):
@@ -38,6 +38,6 @@ class AdicionarProdutoView(View):
             self.dados['produto'].quantidade = self.dados['formulario'].cleaned_data['quantidade']
             self.dados['produto'].preco = self.dados['formulario'].cleaned_data['preco']
             self.dados['produto'].save()
-            return redirect('inicial')
+            return redirect('principal:inicial')
         else:
             return render(request, self.template, self.dados)
