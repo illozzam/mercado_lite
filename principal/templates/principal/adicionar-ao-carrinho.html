@@ -1,0 +1,23 @@
+{% extends "principal/base.html" %}
+
+{% block conteudo %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-center">
+
+        <p><a href="{% url 'principal:inicial' %}" class="btn btn-primary">Voltar</a></p>
+
+        <p>Produto: {{produto.nome}} - {{produto.quantidade}}</p>
+
+        <p>
+          <form action="{% url 'principal:adicionar-ao-carrinho' produto.id %}" method="post">
+              {% csrf_token %}
+              {{formulario.as_p}}
+              <p><input type="submit" class="btn btn-success" value="OK"></p>
+          </form>
+        </p>
+
+      </div>
+    </div>
+  </div>
+{% endblock conteudo %}
