@@ -1,0 +1,36 @@
+{% extends "principal/base.html" %}
+
+{% block conteudo %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+
+        <div class="card">
+          <div class="card-body text-center">
+
+            <form action="{% url 'principal:login' %}" method="post" class="form-inline">
+              {% csrf_token %}
+
+              {{form.username}} {{form.password}}
+
+              <button class="btn btn-primary" type="submit">Enviar</button>
+            </form>
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+{% endblock conteudo %}
+
+{% block js %}
+  <script>
+    $('#id_username').addClass('form-control mx-1')
+    $('#id_password').addClass('form-control mx-1')
+
+    $('#id_username').attr('placeholder', 'Usuário')
+    $('#id_password').attr('placeholder', 'Senha')
+  </script>
+{% endblock js %}

@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from .models import Categoria, Produto
 from .forms import AdicionarProdutoForm
 
-class InicialView(View):
+class InicialView(LoginRequiredMixin, View):
     dados = {}
     template = ''
 
@@ -17,7 +18,7 @@ class InicialView(View):
         self.dados['categorias_compras'] = Categoria.objects.all()
         return render(request, self.template, self.dados)
 
-class AdicionarProdutoView(View):
+class AdicionarProdutoView(LoginRequiredMixin, View):
     dados = {}
     template = 'principal/adicionar-ao-carrinho.html'
 

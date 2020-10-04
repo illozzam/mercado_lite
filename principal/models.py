@@ -12,7 +12,7 @@ class Categoria(models.Model):
 class Produto(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
     nome = models.CharField(max_length=50)
-    quantidade = models.IntegerField(default=1)
+    quantidade = models.DecimalField(max_digits=5, decimal_places=3, default=1)
     preco = models.DecimalField(max_digits=5, decimal_places=2, verbose_name='preço', default=0)
     no_carrinho = models.BooleanField(default=False)
 
